@@ -1,7 +1,10 @@
 import { AppBar, Box } from "@mui/material";
 import React from "react";
+import StudentRegister from "./components/StudentRegister";
+
 
 export default function App() {
+
   return (
     <>
       <AppBar
@@ -16,6 +19,7 @@ export default function App() {
       >
         Education Horizons Student Registry
       </AppBar>
+    
       <Box
         sx={{
           display: "flex",
@@ -28,8 +32,10 @@ export default function App() {
         }}
         backgroundColor="#17e07d"
         align="center"
+      
       >
-        {/* <StudentRegistry /> */}
+        <StudentRegister />
+
       </Box>
     </>
   );
