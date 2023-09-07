@@ -5,6 +5,8 @@ import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 
+import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
+
 
 export default function StudentRegister() {
  const [listing, setListing] = useState([]);
@@ -16,22 +18,17 @@ export default function StudentRegister() {
         // Date formatter: need DD/MM/YYYY (original = YYYY-MM-DD)
         const formattedDates = data.map((student) => ({
           ...student, 
-          date_of_birth: formatToDDMMYYYY(student.date_of_birth),
+          date_of_birth: dateFormatter(student.date_of_birth),
         }));
         setListing(formattedDates);
       })
-      // Error Handling
+      // TODO: Error Handling
       // .catch((error) => {
       //   console.log("error", error);
       // });
   }, [])
 
-      // Helper function for date formatter
-      const formatToDDMMYYYY = (originalDate) => {
-        const [year, month, day] = originalDate.split('-');
-        return `${day}/${month}/${year}`;
-      };
-
+ 
   return (
     <Table> 
       <TableHead>
@@ -44,7 +41,7 @@ export default function StudentRegister() {
       <TableBody>
         {listing.map((student) => (
           <TableRow
-            // Each row (listing) can open up a modal for editing - HERE
+            // TODO: Each row (listing) can open up a modal for editing
             key={student.id}
           >
             <TableCell>{student.first_name}</TableCell>
