@@ -1,9 +1,3 @@
-// This is a table:
-// // Displays: first_name, last_name, date_of_birth
-// // // Date formatter: DOB = DD/MM/YYYY
-// // // Each row (listing) can open up a modal for editing
-
-
 import React, {useEffect, useState} from "react";
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -12,39 +6,53 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 
 
-
 export default function StudentRegister() {
  const [listing, setListing] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/students")
       .then((response) => response.json())
-      .then((data) => {console.log(data); setListing(data)})
-      .catch((error) => console.log("error", error));
-  }, []);
+      .then((data) => {
+        // Date formatter: need DD/MM/YYYY (original = YYYY-MM-DD)
+        const formattedDates = data.map((student) => ({
+          ...student, 
+          date_of_birth: formatToDDMMYYYY(student.date_of_birth),
+        }));
+        setListing(formattedDates);
+      })
+      // Error Handling
+      // .catch((error) => {
+      //   console.log("error", error);
+      // });
+  }, [])
 
-return (
-  <Table> 
-    <TableHead>
-      <TableRow>
-       <TableCell>First Name</TableCell>
-       <TableCell>Last Name</TableCell>
-       <TableCell>Date of Birth</TableCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
-      {listing.map((data) => (
-        <TableRow
-          key={data.id}
-        >
-          <TableCell>{data.first_name}</TableCell>
-          <TableCell>{data.last_name}</TableCell>
-          <TableCell>{data.date_of_birth}</TableCell>
+      // Helper function for date formatter
+      const formatToDDMMYYYY = (originalDate) => {
+        const [year, month, day] = originalDate.split('-');
+        return `${day}/${month}/${year}`;
+      };
+
+  return (
+    <Table> 
+      <TableHead>
+        <TableRow>
+        <TableCell>First Name</TableCell>
+        <TableCell>Last Name</TableCell>
+        <TableCell>Date of Birth (DD/MM/YYYY)</TableCell>
         </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-
-  
-);
-    }
+      </TableHead>
+      <TableBody>
+        {listing.map((student) => (
+          <TableRow
+            // Each row (listing) can open up a modal for editing - HERE
+            key={student.id}
+          >
+            <TableCell>{student.first_name}</TableCell>
+            <TableCell>{student.last_name}</TableCell>
+            <TableCell>{student.date_of_birth}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+}
