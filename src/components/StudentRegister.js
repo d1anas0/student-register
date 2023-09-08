@@ -45,7 +45,10 @@ export default function StudentRegister() {
         <TableRow>
         <TableCell>First Name</TableCell>
         <TableCell>Last Name</TableCell>
-        <TableCell>Date of Birth (DD/MM/YYYY)</TableCell>
+        <TableCell>
+          <p>Date of Birth</p>
+          <p>(DD/MM/YYYY)</p>
+          </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

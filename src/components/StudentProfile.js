@@ -17,7 +17,7 @@ export default function StudentProfile({ selectedStudent, open, closeModal }) {
             setDetails(data);
             setBirthdate(formattedDate);
           })
-          // TODO: Error Handling
+          // TODO: Error Handling (messages)
           .catch((error) => {
             console.error("error", error);
           });
@@ -31,9 +31,9 @@ export default function StudentProfile({ selectedStudent, open, closeModal }) {
       open={open}
       onClose={closeModal}
     >
-      {/* Holds profile picture  */}
+      {/* TODO: Holds profile picture  */}
 
-      {/* First name and Last name fields are editable */}
+      {/* TODO: First name and Last name fields are editable */}
         <div>{details.first_name}</div>
         <div>{details.last_name}</div>
         <div>{birthdate}</div>

@@ -1,3 +1,21 @@
+# Project: Student Registry
+Users will land on a simple table listing of registered students. Upon selecting the student profile of interest a modal will open, allowing them to edit/update the profile. 
+
+This was built using:
+- create-react-app (had considered using Vite but given CRA was already provided and in the interests of time I stayed with CRA for this exercise; though given the technical issues I had throughout this I do wonder whether Vite might've made a difference)
+- MUI
+
+# Learnings, Challenges, Assumptions made, Features to be Implemented
+- Could not work out why although I had passed the fetched object into the StudentProfile component, I was not able to access the id to use in the API. Confirmed the object was available using console.log(), but without changing anything else except to add 'object.id' into the console.log function call, it would crash every time. Got past this by adding a check so that if for whatever reason its not available, it won't crash the app. 
+- Similar challenge with accessing eg. street_line1 etc nested data.
+- date formatter: I assumed that the date would always be in the same format. 
+- Refactored the date formatter intending for it to be a util, though for this specific exercise it may be a little overkill!
+- Features that were intended to be included: 
+    - fully developed UI as suggested in the wireframe, including the editable first/last name text fields. 
+    - proper error messages for delayed/errored API requests
+    - write more tests! 
+
+
 # Context
 In a school, often teachers needs view and update student details.
 
