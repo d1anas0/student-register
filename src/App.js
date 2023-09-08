@@ -1,6 +1,8 @@
-import { AppBar, Box } from "@mui/material";
 import React from "react";
+import { AppBar, Box } from "@mui/material";
+
 import StudentRegister from "./components/StudentRegister";
+// import StudentProfile from "./components/StudentProfile";
 
 
 export default function App() {
@@ -32,10 +34,9 @@ export default function App() {
         }}
         backgroundColor="#17e07d"
         align="center"
-      
       >
         <StudentRegister />
-
+        {/* <StudentProfile /> */}
       </Box>
     </>
   );

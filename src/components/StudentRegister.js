@@ -6,26 +6,36 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 
 import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
+import StudentProfile from "./StudentProfile";
 
 
 export default function StudentRegister() {
  const [listing, setListing] = useState([]);
+ const [selectedStudent, setSelectedStudent] = useState(null);
+ const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleRowClick = (student) => {
+    openModal();
+    setSelectedStudent(student); 
+  };
+
+  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => setIsModalOpen(true);
+
 
   useEffect(() => {
     fetch("http://localhost:5000/students")
       .then((response) => response.json())
       .then((data) => {
-        // Date formatter: need DD/MM/YYYY (original = YYYY-MM-DD)
         const formattedDates = data.map((student) => ({
           ...student, 
           date_of_birth: dateFormatter(student.date_of_birth),
         }));
         setListing(formattedDates);
       })
-      // TODO: Error Handling
-      // .catch((error) => {
-      //   console.log("error", error);
-      // });
+      .catch((error) => {
+        console.error("error", error);
+      });
   }, [])
 
  
@@ -40,14 +50,18 @@ export default function StudentRegister() {
       </TableHead>
       <TableBody>
         {listing.map((student) => (
+          <>
           <TableRow
-            // TODO: Each row (listing) can open up a modal for editing
+            // TODO: UI - how does user know the rows are clickable
             key={student.id}
+            onClick={() => handleRowClick(student)}
           >
             <TableCell>{student.first_name}</TableCell>
             <TableCell>{student.last_name}</TableCell>
             <TableCell>{student.date_of_birth}</TableCell>
           </TableRow>
+          <StudentProfile selectedStudent={selectedStudent} open={isModalOpen} closeModal={closeModal}/>
+          </>
         ))}
       </TableBody>
     </Table>
