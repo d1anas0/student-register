@@ -1,34 +1,32 @@
-import React, {useEffect, useState} from "react";
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import React, { useEffect, useState } from "react";
+import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
 
 import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
 import StudentProfile from "./StudentProfile";
 
-
 export default function StudentRegister() {
- const [listing, setListing] = useState([]);
- const [selectedStudent, setSelectedStudent] = useState(null);
- const [isModalOpen, setIsModalOpen] = useState(false);
+  const [listing, setListing] = useState([]);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRowClick = (student) => {
     openModal();
-    setSelectedStudent(student); 
+    setSelectedStudent(student);
   };
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
-
 
   useEffect(() => {
     fetch("http://localhost:5000/students")
       .then((response) => response.json())
       .then((data) => {
         const formattedDates = data.map((student) => ({
-          ...student, 
+          ...student,
           date_of_birth: dateFormatter(student.date_of_birth),
         }));
         setListing(formattedDates);
@@ -36,24 +34,22 @@ export default function StudentRegister() {
       .catch((error) => {
         console.error("error", error);
       });
-  }, [])
+  }, []);
 
- 
   return (
-    <Table> 
+    <Table>
       <TableHead>
         <TableRow>
-        <TableCell>First Name</TableCell>
-        <TableCell>Last Name</TableCell>
-        <TableCell>
-          <p>Date of Birth</p>
-          <p>(DD/MM/YYYY)</p>
+          <TableCell>First Name</TableCell>
+          <TableCell>Last Name</TableCell>
+          <TableCell>
+            <p>Date of Birth</p>
+            <p>(DD/MM/YYYY)</p>
           </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {listing.map((student) => (
-          <>
           <TableRow
             // TODO: UI - how does user know the rows are clickable
             key={student.id}
@@ -63,9 +59,12 @@ export default function StudentRegister() {
             <TableCell>{student.last_name}</TableCell>
             <TableCell>{student.date_of_birth}</TableCell>
           </TableRow>
-          <StudentProfile selectedStudent={selectedStudent} open={isModalOpen} closeModal={closeModal}/>
-          </>
         ))}
+        <StudentProfile
+          selectedStudent={selectedStudent}
+          open={isModalOpen}
+          closeModal={closeModal}
+        />
       </TableBody>
     </Table>
   );
