@@ -4,7 +4,7 @@ import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
 import { Dialog } from "@mui/material/";
 
 export default function StudentProfile({ selectedStudent, open, closeModal }) {
-  const [details, setDetails] = useState([]);
+  const [details, setDetails] = useState({});
   const [birthdate, setBirthdate] = useState(null);
 
   useEffect(() => {
