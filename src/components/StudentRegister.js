@@ -5,10 +5,12 @@ import {
   TableRow,
   TableBody,
   TableCell,
+  Typography,
 } from "@mui/material";
 
 import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
 import StudentProfile from "./StudentProfile";
+import ListItem from "./StudentList";
 
 export default function StudentRegister() {
   const [listing, setListing] = useState([]);
@@ -42,21 +44,45 @@ export default function StudentRegister() {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell align="center">First Name</TableCell>
-          <TableCell align="center">Last Name</TableCell>
           <TableCell align="center">
-            <p style={{ margin: 0 }}>Date of Birth</p>
-            <p style={{ margin: 0 }}>(DD/MM/YYYY)</p>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 600, color: "text.primary" }}
+            >
+              First Name
+            </Typography>
+          </TableCell>
+          <TableCell align="center">
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 600, color: "text.primary" }}
+            >
+              Last Name
+            </Typography>
+          </TableCell>
+          <TableCell align="center">
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 600, color: "text.primary", m: 0 }}
+            >
+              Date of Birth
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              sx={{ color: "text.primary", m: 0 }}
+            >
+              (DD/MM/YYYY)
+            </Typography>
           </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {listing.map((student) => (
-          <TableRow key={student.id} onClick={() => handleRowClick(student)}>
-            <TableCell align="center">{student.first_name}</TableCell>
-            <TableCell align="center">{student.last_name}</TableCell>
-            <TableCell align="center">{student.date_of_birth}</TableCell>
-          </TableRow>
+          <ListItem
+            key={student.id}
+            student={student}
+            onClick={handleRowClick}
+          />
         ))}
       </TableBody>
       {isModalOpen && selectedStudent && (
