@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Dialog } from "@mui/material/";
+import { Dialog, DialogContent, Box, Typography } from "@mui/material/";
 
 import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
 
@@ -25,22 +25,37 @@ export default function StudentProfile({ selectedStudent, open, closeModal }) {
 
   return (
     // TODO: UI of modal
-    <Dialog maxWidth="sm" open={open} onClose={closeModal}>
+    <Dialog
+      maxWidth="sm"
+      open={open}
+      onClose={closeModal}
+      PaperProps={{
+        sx: {
+          bgcolor: "contrast.default",
+          color: "text.primary",
+        },
+      }}
+    >
       {/* TODO: Holds profile picture  */}
       {/* TODO: First name and Last name fields are editable */}
-      {details.first_name ? (
-        <>
-          <div>{details.first_name}</div>
-          <div>{details.last_name}</div>
-          <div>{birthdate}</div>
-          <div>{details.address?.street_line1}</div>
-          <div>{details.address?.street_line2}</div>
-          <div>{details.address?.country}</div>
-          <div>{details.address?.postcode}</div>
-        </>
-      ) : (
-        <div>Loading...</div>
-      )}
+      <DialogContent>
+        {details.first_name ? (
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Typography variant="h6">
+              {details.first_name} {details.last_name}
+            </Typography>
+            <Typography>Date of Birth: {birthdate}</Typography>
+            <Typography>
+              {details.address?.street_line1} {details.address?.street_line2}
+            </Typography>
+            <Typography>
+              {details.address?.postcode} {details.address?.country}
+            </Typography>
+          </Box>
+        ) : (
+          <Typography>Loading...</Typography>
+        )}
+      </DialogContent>
     </Dialog>
   );
 }
