@@ -42,24 +42,20 @@ export default function StudentRegister() {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>First Name</TableCell>
-          <TableCell>Last Name</TableCell>
-          <TableCell>
-            <p>Date of Birth</p>
-            <p>(DD/MM/YYYY)</p>
+          <TableCell align="center">First Name</TableCell>
+          <TableCell align="center">Last Name</TableCell>
+          <TableCell align="center">
+            <p style={{ margin: 0 }}>Date of Birth</p>
+            <p style={{ margin: 0 }}>(DD/MM/YYYY)</p>
           </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {listing.map((student) => (
-          <TableRow
-            // TODO: UI - how does user know the rows are clickable
-            key={student.id}
-            onClick={() => handleRowClick(student)}
-          >
-            <TableCell>{student.first_name}</TableCell>
-            <TableCell>{student.last_name}</TableCell>
-            <TableCell>{student.date_of_birth}</TableCell>
+          <TableRow key={student.id} onClick={() => handleRowClick(student)}>
+            <TableCell align="center">{student.first_name}</TableCell>
+            <TableCell align="center">{student.last_name}</TableCell>
+            <TableCell align="center">{student.date_of_birth}</TableCell>
           </TableRow>
         ))}
       </TableBody>

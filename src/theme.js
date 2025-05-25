@@ -6,12 +6,15 @@ const theme = createTheme({
       main: "#9FBF9B",
     },
     secondary: {
+      main: "#121113",
+    },
+    action: {
       main: "#199059",
     },
     text: {
       primary: "#0E1B0E",
     },
-    background: {
+    contrast: {
       default: "#EFEDE6",
     },
   },

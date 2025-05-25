@@ -8,30 +8,31 @@ export default function App() {
       <AppBar
         position="sticky"
         sx={{
-          backgroundColor: "#2546ce",
-          color: "#ffffff",
+          bgcolor: "secondary.main",
+          color: "primary.main",
           typography: "h6",
           textAlign: "left",
+          p: 2,
+          pl: 3,
         }}
-        style={{ padding: 10, paddingLeft: 20 }}
       >
-        Education Horizons Student Registry
+        Student Registry
       </AppBar>
 
       <Box
         sx={{
+          bgcolor: "primary.main",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          minHeight: "100vh",
+          pt: 4,
         }}
-        style={{
-          height: "100vh",
-          padding: "6%",
-        }}
-        backgroundColor="#17e07d"
-        align="center"
       >
-        <StudentRegister />
+        <Box sx={{ width: "90%" }}>
+          <StudentRegister />
+        </Box>
       </Box>
     </>
   );
