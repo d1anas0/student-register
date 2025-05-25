@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { Dialog } from "@mui/material/";
 
 import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
-import { Dialog } from "@mui/material/";
 
 export default function StudentProfile({ selectedStudent, open, closeModal }) {
   const [details, setDetails] = useState({});

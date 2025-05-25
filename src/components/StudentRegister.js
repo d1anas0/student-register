@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Table from "@mui/material/Table";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import { useEffect, useState } from "react";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableBody,
+  TableCell,
+} from "@mui/material";
 
 import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
 import StudentProfile from "./StudentProfile";
