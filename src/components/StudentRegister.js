@@ -60,12 +60,14 @@ export default function StudentRegister() {
             <TableCell>{student.date_of_birth}</TableCell>
           </TableRow>
         ))}
+      </TableBody>
+      {isModalOpen && selectedStudent && (
         <StudentProfile
           selectedStudent={selectedStudent}
           open={isModalOpen}
           closeModal={closeModal}
         />
-      </TableBody>
+      )}
     </Table>
   );
 }
