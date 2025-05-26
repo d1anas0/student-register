@@ -24,7 +24,6 @@ export default function StudentProfile({ selectedStudent, open, closeModal }) {
   }, [selectedStudent?.id]);
 
   return (
-    // TODO: UI of modal
     <Dialog
       maxWidth="sm"
       open={open}
@@ -34,26 +33,39 @@ export default function StudentProfile({ selectedStudent, open, closeModal }) {
           bgcolor: "contrast.default",
           color: "text.primary",
         },
+        "aria-labelledby": "student-profile-title",
+        "data-testid": "student-profile-dialog",
       }}
     >
       {/* TODO: Holds profile picture  */}
       {/* TODO: First name and Last name fields are editable */}
-      <DialogContent>
+      <DialogContent data-testid="student-profile-content">
         {details.first_name ? (
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Typography variant="h6">
+          <Box
+            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            aria-label="Student details"
+            data-testid="student-details-box"
+          >
+            <Typography
+              id="student-profile-title"
+              variant="h6"
+              data-testid="student-name"
+            >
               {details.first_name} {details.last_name}
             </Typography>
-            <Typography>Date of Birth: {birthdate}</Typography>
-            <Typography>
-              {details.address?.street_line1} {details.address?.street_line2}
+            <Typography data-testid="student-dob">
+              Date of Birth: {birthdate}
             </Typography>
-            <Typography>
+            <Typography data-testid="student-address">
+              Address: {details.address?.street_line1}{" "}
+              {details.address?.street_line2}
+            </Typography>
+            <Typography data-testid="student-location">
               {details.address?.postcode} {details.address?.country}
             </Typography>
           </Box>
         ) : (
-          <Typography>Loading...</Typography>
+          <Typography data-testid="student-loading">Loading...</Typography>
         )}
       </DialogContent>
     </Dialog>

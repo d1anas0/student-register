@@ -10,7 +10,7 @@ import {
 
 import { formatToDDMMYYYY as dateFormatter } from "../dateFormatter";
 import StudentProfile from "./StudentProfile";
-import ListItem from "./StudentList";
+import ListItem from "./StudentRow";
 
 export default function StudentRegister() {
   const [listing, setListing] = useState([]);

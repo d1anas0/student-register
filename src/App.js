@@ -1,4 +1,4 @@
-import { AppBar, Box } from "@mui/material";
+import { AppBar, Box, Typography } from "@mui/material";
 
 import StudentRegister from "./components/StudentRegister";
 
@@ -16,7 +16,7 @@ export default function App() {
           pl: 3,
         }}
       >
-        Student Registry
+        <Typography variant="h6">Student Registry</Typography>
       </AppBar>
 
       <Box
