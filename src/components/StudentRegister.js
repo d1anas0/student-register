@@ -41,10 +41,15 @@ export default function StudentRegister() {
   }, []);
 
   return (
-    <Table>
+    <Table data-testid="student-table" aria-label="registered students table">
       <TableHead>
         <TableRow>
-          <TableCell align="center">
+          <TableCell
+            align="center"
+            data-testid="first-name-header"
+            id="first-name-header"
+            scope="col"
+          >
             <Typography
               variant="subtitle1"
               sx={{ fontWeight: 600, color: "text.primary" }}
@@ -52,7 +57,12 @@ export default function StudentRegister() {
               First Name
             </Typography>
           </TableCell>
-          <TableCell align="center">
+          <TableCell
+            align="center"
+            data-testid="last-name-header"
+            id="last-name-header"
+            scope="col"
+          >
             <Typography
               variant="subtitle1"
               sx={{ fontWeight: 600, color: "text.primary" }}
@@ -60,7 +70,12 @@ export default function StudentRegister() {
               Last Name
             </Typography>
           </TableCell>
-          <TableCell align="center">
+          <TableCell
+            align="center"
+            data-testid="date-of-birth-header"
+            id="date-of-birth-header"
+            scope="col"
+          >
             <Typography
               variant="subtitle1"
               sx={{ fontWeight: 600, color: "text.primary", m: 0 }}
@@ -82,6 +97,8 @@ export default function StudentRegister() {
             key={student.id}
             student={student}
             onClick={handleRowClick}
+            data-testid={`student-row-${student.id}`}
+            aria-labelledby={`first-name-header last-name-header date-of-birth-header`}
           />
         ))}
       </TableBody>
