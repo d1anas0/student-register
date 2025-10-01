@@ -1,13 +1,14 @@
 # Project: Student Registry
+In a school, often teachers needs view and update student details. 
 Users will land on a simple table listing of registered students. Upon selecting the student profile of interest a modal will open, allowing them to edit/update the profile. 
 
 This was built using:
-- create-react-app (had considered using Vite but given CRA was already provided and in the interests of time I stayed with CRA for this exercise; though given the technical issues I had throughout this I do wonder whether Vite might've made a difference)
+- create-react-app (had considered using Vite but given CRA was already provided and in the interests of time I stayed with CRA for this exercise)
 - MUI
 
 # Learnings, Challenges, Assumptions made, Features to be Implemented
-- Could not work out why although I had passed the fetched object into the StudentProfile component, I was not able to access the id to use in the API. Confirmed the object was available using console.log(), but without changing anything else except to add 'object.id' into the console.log function call, it would crash every time. Got past this by adding a check so that if for whatever reason its not available, it won't crash the app. 
-- Similar challenge with accessing eg. street_line1 etc nested data.
+- When I initially approached this challenge, I struggled to understand why I was having trouble accessing nested data. At the time I simply got past this by adding a check so that if for whatever reason its not available, it won't crash the app. It was a band-aid fix I know, but had not yet acquired the skills to properly resolve the issue.
+    - Upon revisiting this earlier this year, I realised that the issue was rooted in a runtime error due to my implementation of the component, such as for StudentProfile. Additionally, in mounting this component inside of the table body, in a real production environment this likely would have caused performance issues for a large database.
 - date formatter: I assumed that the date would always be in the same format. 
 - Refactored the date formatter intending for it to be a util, though for this specific exercise it may be a little overkill!
 - Features that were intended to be included: 
@@ -16,11 +17,8 @@ This was built using:
     - write more tests! 
 
 
-# Context
-In a school, often teachers needs view and update student details.
-
 # Requirements
-Build a single-page list application in which a user should be able to:
+In this single-page app, a user should be able to:
 
 - See a list of students in a table with just their full names and date of birth shown in localized format (ie: DD/MM/YYYY)
 - When a student is selected from the table,  a view of your choice (ie: a modal) will show the following details of the student
@@ -36,7 +34,7 @@ Build a single-page list application in which a user should be able to:
 - Only the first name and last names are editable. Other student details are **read only**.
 - A teacher could update the first and last names of a student and **persist** it
 
-You are provided with the following API endpoints:
+I have the following API endpoints:
 ```
 GET http://localhost:5000/students
 GET http://localhost:5000/students/:id
@@ -59,20 +57,4 @@ However, feel free to use any frontend framework of your choice.
 2. run `npm run server:start` to access the aforementioned student & profile details
 3. run `npm run start` to access starter app at localhost:3000
 
-# Evaluation Criteria
-This exercise is the opportunity to demonstrate your skills as a software engineer. So please build this application with techniques that you will apply as if this was a production ready app.  
 
-- Code quality
-- Functionality
-- Use of React/frontend engineering best practices
-- Sensible technical decisions/assumptions if the requirements are open-ended
-- Documentation 
-
-Note:  
-- CSS styling or a good looking application is not a core evaluation criteria. However feel free to make it look amazing.  
-- Feel free to use Typescript.  
-- We suggest you spend no more than 3 hours.  
-
-
-# Submission
-Please **DO NOT** post your solution publicly.
