@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/student-registry/static/js/main.59ed3de4.js",
+    "index.html": "/student-registry/index.html",
+    "main.59ed3de4.js.map": "/student-registry/static/js/main.59ed3de4.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.59ed3de4.js"
+  ]
+}
